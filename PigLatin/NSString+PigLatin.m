@@ -12,20 +12,28 @@
 
 -(NSString*) stringByPigLatinization
 {
+    NSCharacterSet *vowels = [NSCharacterSet characterSetWithCharactersInString:@"aeiouAEIOU"];
     NSArray *stringArray = [self componentsSeparatedByString:@" "];
+    
     NSString* modifiedString;
+    NSString* placeholder;
+    
     for (NSString* targetString in stringArray)
     {
-        [targetString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"aeiouAEIOU"]];
-        
+        NSRange range = [targetString rangeOfCharacterFromSet:vowels];
+        NSLog(@"%d",(int)range.location);
+
         if (!modifiedString)
         {
-            modifiedString = targetString;
+            modifiedString = placeholder;
         }
         else
         {
-            modifiedString= [modifiedString stringByAppendingString:targetString];
+            modifiedString = [modifiedString stringByAppendingString:placeholder];
         }
+        
+        
+        
     }
     return modifiedString;
 }
