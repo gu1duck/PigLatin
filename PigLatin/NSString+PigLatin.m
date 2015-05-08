@@ -16,23 +16,30 @@
     NSArray *stringArray = [self componentsSeparatedByString:@" "];
     
     NSString* modifiedString;
-    NSString* placeholder;
+    NSString* startOfWord;
+    NSString* endOfWord;
     
     for (NSString* targetString in stringArray)
     {
-        NSRange range = [targetString rangeOfCharacterFromSet:vowels];
-        NSLog(@"%d",(int)range.location);
+        NSRange rangeOfVowel = [targetString rangeOfCharacterFromSet:vowels];
+        
+        startOfWord = [targetString substringToIndex:rangeOfVowel.location];
+        endOfWord = [targetString substringFromIndex:rangeOfVowel.location];
+        
+        endOfWord = [endOfWord stringByAppendingString:startOfWord];
+        endOfWord = [endOfWord stringByAppendingString:@"ay "];
+
 
         if (!modifiedString)
         {
-            modifiedString = placeholder;
+            modifiedString = endOfWord;
         }
         else
         {
-            modifiedString = [modifiedString stringByAppendingString:placeholder];
+            modifiedString = [modifiedString stringByAppendingString:endOfWord];
         }
         
-        
+        //NSLog(@"%@",modifiedString);
         
     }
     return modifiedString;
