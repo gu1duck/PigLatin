@@ -10,4 +10,24 @@
 
 @implementation NSString (PigLatin)
 
+-(NSString*) stringByPigLatinization
+{
+    NSArray *stringArray = [self componentsSeparatedByString:@" "];
+    NSString* modifiedString;
+    for (NSString* targetString in stringArray)
+    {
+        [targetString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"aeiouAEIOU"]];
+        
+        if (!modifiedString)
+        {
+            modifiedString = targetString;
+        }
+        else
+        {
+            modifiedString= [modifiedString stringByAppendingString:targetString];
+        }
+    }
+    return modifiedString;
+}
+
 @end

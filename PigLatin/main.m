@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSString+PigLatin.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        NSString* string = @"thisaaaa iseee myiii stringooo";
+        NSLog(@"%@", [string stringByPigLatinization]);
         
     }
     return 0;
